@@ -20,6 +20,8 @@ def verify_route(string: str) -> bool:
     else:
         return False
 
+def create_route_dict(route_data: str) -> None:
+    pass
 
 def read_route_data(file: str) -> None:
     """
