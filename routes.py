@@ -20,8 +20,19 @@ def verify_route(string: str) -> bool:
     else:
         return False
 
-def create_route_dict(route_data: str) -> None:
-    pass
+
+def create_route_dict(route_data: str) -> dict:
+    data = route_data.split(',')
+
+    route_dict = {
+        "route_id": int(data[0]),
+        "happy_passengers": int(data[1]),
+        "unhappy_passengers": int(data[2]),
+        "happy_customer_ratio": round(float(data[1]) / float(data[2]), 2)
+    }
+
+    return route_dict
+
 
 def read_route_data(file: str) -> None:
     """
@@ -34,17 +45,8 @@ def read_route_data(file: str) -> None:
         reader = csv.reader(csvfile, delimiter=' ')
         for row in reader:
             route_txt = row[0]
-
-            if verify_route(route_txt):
-                data = route_txt.split(',')
-
-                route_dict = {
-                    "route_id": int(data[0]),
-                    "happy_passengers": int(data[1]),
-                    "unhappy_passengers": int(data[2]),
-                    "happy_customer_ratio": round(float(data[1]) / float(data[2]), 2)
-                }
-                routes.append(route_dict)
+            if verify_route(row[0]):
+                routes.append(create_route_dict(row[0]))
             else:
                 print("Error reading line")
 
