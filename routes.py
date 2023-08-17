@@ -23,7 +23,7 @@ def verify_route(string: str) -> bool:
 
 def create_route_dict(route_data: str) -> dict:
     """
-    
+
     :param route_data:
     :return:
     """
