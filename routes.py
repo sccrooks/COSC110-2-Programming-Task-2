@@ -4,8 +4,9 @@ import re
 routes = []
 
 
-def sort_route_data(list: list[dict]) -> None:
-    pass
+def sort_route_data(list: list[dict]) -> list[dict]:
+    sorted_routes = sorted(list, key=lambda d: d['happy_customer_ratio'])
+    return sorted_routes
 
 
 def verify_route(string: str) -> bool:
@@ -14,7 +15,7 @@ def verify_route(string: str) -> bool:
     :param string: route
     :return:
     """
-    regex = "^\d+,\d+,\d+$"
+    regex = r'^\d+,\d+,\d+$'
     if re.search(regex, string) is not None:
         return True
     else:
@@ -57,4 +58,5 @@ def read_route_data(file: str) -> None:
 
 
 read_route_data("routes.txt")
+routes = sort_route_data(routes)
 print(routes)
