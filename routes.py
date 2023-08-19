@@ -2,19 +2,27 @@ import csv
 import re
 
 
-def sort_route_data(list: list[dict]) -> list[dict]:
-    sorted_routes = sorted(list, key=lambda d: d['happy_customer_ratio'])
+def sort_route_data(routes: list[dict]) -> list[dict]:
+    """
+    sort_route_data sorts inputted list[dict] by happy_customer_ratio.
+
+    :param routes: list[dict] of route data
+    :return: sorted list[dict] of route data
+    """
+    sorted_routes = sorted(routes, key=lambda d: d['happy_customer_ratio'])
     return sorted_routes
 
 
-def verify_route(string: str) -> bool:
+def verify_route(route_data: str) -> bool:
     """
+    verify_route compares the inputted route string against a regex expression
+    and returns true if the inputted string matches the regex expression.
 
-    :param string: route
-    :return:
+    :param route_data: Route string, format: 100,100,100
+    :return: Boolean, True if regex expression matched
     """
     regex = r'^\d+,\d+,\d+$'
-    if re.search(regex, string) is not None:
+    if re.search(regex, route_data) is not None:
         return True
     else:
         return False
@@ -22,9 +30,11 @@ def verify_route(string: str) -> bool:
 
 def create_route_dict(route_data: str) -> dict:
     """
+    create_route_dict attempts to create a dictionary from the inputted string
+    and returns the dictionary.
 
-    :param route_data:
-    :return:
+    :param route_data: Route data string
+    :return: Route dictionary
     """
     data = route_data.split(',')
 
@@ -40,7 +50,7 @@ def create_route_dict(route_data: str) -> dict:
 
 def read_route_data(file: str, routes_list: list[dict]) -> None:
     """
-    Attempts to read requested csv file, and if successful creates a list
+    read_route_data attempts to read requested csv file, and if successful creates a list
     of dictionaries containing the route data
 
     :param routes_list: List of route dictionaries
