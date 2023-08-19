@@ -1,8 +1,6 @@
 import csv
 import re
 
-routes = []
-
 
 def sort_route_data(list: list[dict]) -> list[dict]:
     sorted_routes = sorted(list, key=lambda d: d['happy_customer_ratio'])
@@ -40,11 +38,12 @@ def create_route_dict(route_data: str) -> dict:
     return route_dict
 
 
-def read_route_data(file: str) -> None:
+def read_route_data(file: str, routes_list: list[dict]) -> None:
     """
     Attempts to read requested csv file, and if successful creates a list
     of dictionaries containing the route data
 
+    :param routes_list: List of route dictionaries
     :param file: File to read data from.
     """
     with open(file, newline='') as csvfile:
@@ -52,11 +51,12 @@ def read_route_data(file: str) -> None:
         for row in reader:
             route_txt = row[0]
             if verify_route(row[0]):
-                routes.append(create_route_dict(row[0]))
+                routes_list.append(create_route_dict(row[0]))
             else:
                 print("Error reading line")
 
 
-read_route_data("routes.txt")
+routes = []
+read_route_data("routes.txt", routes)
 routes = sort_route_data(routes)
 print(routes)
