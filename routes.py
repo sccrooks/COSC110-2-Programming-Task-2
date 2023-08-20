@@ -31,11 +31,12 @@ def verify_route(route_data: str) -> bool:
 def create_route_dict(route_data: str) -> dict:
     """
     create_route_dict attempts to create a dictionary from the inputted string
-    and returns the dictionary.
+    and returns said dictionary.
 
     :param route_data: Route data string
     :return: Route dictionary
     """
+
     data = route_data.split(',')
 
     route_dict = {
@@ -50,7 +51,7 @@ def create_route_dict(route_data: str) -> dict:
 
 def read_route_data(file: str, routes_list: list[dict]) -> None:
     """
-    read_route_data attempts to read requested csv file, and if successful creates a list
+    read_route_data attempts to read requested file, and if successful creates a list
     of dictionaries containing the route data
 
     :param routes_list: List of route dictionaries
@@ -64,6 +65,10 @@ def read_route_data(file: str, routes_list: list[dict]) -> None:
                 routes_list.append(create_route_dict(row[0]))
             else:
                 print("Error reading line")
+
+
+def get_int_input():
+    pass
 
 
 routes = []
