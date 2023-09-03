@@ -64,9 +64,10 @@ def read_route_data(file: str, routes_list: list[dict]) -> None:
             if verify_route(row[0]):
                 routes_list.append(create_route_dict(row[0]))
             else:
-                error_message = "An error has occurred while attempted to read \"{}\". Exiting program."
+                error_message = "An error has occurred while attempted to read \"{}\"." \
+                                "\nPlease ensure that file is structured correctly before attempting a rerun." \
+                                "\nExiting program."
                 print(error_message.format(file))
-                print("Please ensure file is structured correctly.")
                 sys.exit(1)
 
 
@@ -105,7 +106,7 @@ def main():
     extra_buses = request_int_input("How many routes can have an extra bus?", 0, len(routes))
     print("You should add buses to the following routes: ")
     for i in range(extra_buses):
-        print(str(routes[i].get('id')))
+        print(str(routes[i].get('route_id')))
 
 
 main()
