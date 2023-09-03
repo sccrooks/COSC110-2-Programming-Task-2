@@ -64,7 +64,8 @@ def read_route_data(file: str, routes_list: list[dict]) -> None:
             if verify_route(row[0]):
                 routes_list.append(create_route_dict(row[0]))
             else:
-                print("Error reading line")
+                error_message = "There was an error while reading \"{}\". Exiting program."
+                print(error_message.format(file))
 
 
 def request_int_input(message: str, minimum: int = None, maximum: int = None) -> int:
