@@ -101,7 +101,11 @@ def main():
     routes = []
     read_route_data("routes.txt", routes)
     routes = sort_route_data(routes)
-    print(routes)
+
+    extra_buses = request_int_input("How many routes can have an extra bus?", 0, len(routes))
+    print("You should add buses to the following routes: ")
+    for i in range(extra_buses):
+        print(str(routes[i].get('id')))
 
 
-main();
+main()
