@@ -38,6 +38,7 @@ def create_route_dict(route_data: str) -> dict:
     :return: Route dictionary
     """
 
+    # The route data is given as a string, so we must split the string to form the dictionary
     data = route_data.split(',')
 
     route_dict = {
@@ -58,13 +59,19 @@ def read_route_data(file: str, routes_list: list[dict]) -> None:
     :param routes_list: List of route dictionaries
     :param file: File to read data from.
     """
+
+    # Attempt to open file
     with open(file, newline='') as csvfile:
+        # Create a new csv reader
         reader = csv.reader(csvfile, delimiter=' ')
+        # Read through each line in file
         for row in reader:
             route_txt = row[0]
             if verify_route(row[0]):
+                # If there are no errors with data create a new dict and append to list
                 routes_list.append(create_route_dict(row[0]))
             else:
+                # If there is an error in the data, give an error message and exit with code 1 (error)
                 error_message = "An error has occurred while attempted to read \"{}\"." \
                                 "\nPlease ensure that file is structured correctly before attempting a rerun." \
                                 "\nExiting program."
@@ -106,9 +113,11 @@ def main():
     print(str(routes))
 
     extra_buses = request_int_input("How many routes can have an extra bus?", 0, len(routes))
+
     print("You should add buses to the following routes: ")
     for i in range(extra_buses):
         print(str(routes[i].get('route_id')))
 
 
+# Program entry:
 main()
