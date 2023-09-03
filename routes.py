@@ -2,6 +2,7 @@ import csv
 import re
 import sys
 
+
 def sort_route_data(routes: list[dict]) -> list[dict]:
     """
     sort_route_data sorts inputted list[dict] by happy_customer_ratio.
@@ -9,7 +10,7 @@ def sort_route_data(routes: list[dict]) -> list[dict]:
     :param routes: list[dict] of route data
     :return: sorted list[dict] of route data
     """
-    sorted_routes = sorted(routes, key=lambda d: d['happy_customer_ratio'])
+    sorted_routes = sorted(routes, key=lambda d: d['happy_customer_ratio'], reverse=True)
     return sorted_routes
 
 
@@ -102,6 +103,7 @@ def main():
     routes = []
     read_route_data("routes.txt", routes)
     routes = sort_route_data(routes)
+    print(str(routes))
 
     extra_buses = request_int_input("How many routes can have an extra bus?", 0, len(routes))
     print("You should add buses to the following routes: ")
