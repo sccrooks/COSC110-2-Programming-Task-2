@@ -67,8 +67,28 @@ def read_route_data(file: str, routes_list: list[dict]) -> None:
                 print("Error reading line")
 
 
-def get_int_input():
-    pass
+def request_int_input(message: str, minimum: int = None, maximum: int = None) -> int:
+    """
+    get_int_input requests an integer input from the
+    user of a minimum value, specified by minimum.
+
+    :param message: The message presented to the user
+    :param minimum: Minimum allowed input
+    :param maximum: Maximum allowed input
+    :return: int
+    """
+    while True:
+        try:
+            input_num = int(input(message))
+
+            if minimum is not None and input_num < minimum:
+                print("Invalid input. Please enter an integer of at least " + str(minimum) + ".")
+            elif maximum is not None and input_num > maximum:
+                print("Invalid input. Please enter an integer of at least " + str(maximum) + ".")
+            else:
+                return input_num
+        except:
+            print("Invalid input. Please enter an integer")
 
 
 routes = []
