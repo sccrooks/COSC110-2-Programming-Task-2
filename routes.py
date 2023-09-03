@@ -1,3 +1,12 @@
+#
+#   Author: Scott Crooks
+#
+#   Purpose: System for tracking the number of happy/unhappy passengers
+#            for Codetown school bus stops/routes and calculating what routes need new buses
+#
+#   Usage: To use, run this file / see readme.md
+#
+
 import csv
 import re
 import sys
