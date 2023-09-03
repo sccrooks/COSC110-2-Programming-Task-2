@@ -1,6 +1,6 @@
 import csv
 import re
-
+import sys
 
 def sort_route_data(routes: list[dict]) -> list[dict]:
     """
@@ -64,8 +64,10 @@ def read_route_data(file: str, routes_list: list[dict]) -> None:
             if verify_route(row[0]):
                 routes_list.append(create_route_dict(row[0]))
             else:
-                error_message = "There was an error while reading \"{}\". Exiting program."
+                error_message = "An error has occurred while attempted to read \"{}\". Exiting program."
                 print(error_message.format(file))
+                print("Please ensure file is structured correctly.")
+                sys.exit(1)
 
 
 def request_int_input(message: str, minimum: int = None, maximum: int = None) -> int:
@@ -92,7 +94,14 @@ def request_int_input(message: str, minimum: int = None, maximum: int = None) ->
             print("Invalid input. Please enter an integer")
 
 
-routes = []
-read_route_data("routes.txt", routes)
-routes = sort_route_data(routes)
-print(routes)
+def main():
+    """
+    main controls core program loop.
+    """
+    routes = []
+    read_route_data("routes.txt", routes)
+    routes = sort_route_data(routes)
+    print(routes)
+
+
+main();
